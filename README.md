@@ -47,8 +47,8 @@
 
 3. ران کردن json-server (شبیه‌سازی بک‌اند):
    ```bash
-   npm install
+   npm run server
 
 4. ران کردن فرانت‌اند:
    ```bash
-   npm install
+   npm run server
