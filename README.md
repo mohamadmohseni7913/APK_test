@@ -41,14 +41,14 @@
    git clone <repository-url>
    cd <project-folder>
 
-2. نصب وابستگی ها :
-  ```bash
-  npm install
+2. نصب وابستگی ها:
+   ```bash
+   npm install
 
 3. ران کردن json-server (شبیه‌سازی بک‌اند):
-  ```bash
-  npm run server
+   ```bash
+   npm install
 
 4. ران کردن فرانت‌اند:
    ```bash
-   npm run dev
+   npm install
