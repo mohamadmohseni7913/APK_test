@@ -51,4 +51,4 @@
 
 4. ران کردن فرانت‌اند:
    ```bash
-   npm run server
+   npm run dev
