@@ -1,0 +1,255 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user",
+      "password": "user",
+      "is_admin": false
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "password": "admin",
+      "is_admin": true
+    },
+    {
+      "username": "mohamad",
+      "password": "123",
+      "email": "mohamadmohseni985@gmail.com",
+      "is_admin": false,
+      "id": 3
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "title": "مشکل در ورود به سیستم",
+      "description": "نمی‌توانم وارد حساب کاربری‌ام شوم.",
+      "priority": "high",
+      "status": "in_progress",
+      "userId": 1,
+      "created_at": "2026-02-20T10:00:00Z",
+      "updated_at": "2026-02-21T19:01:46.753Z"
+    },
+    {
+      "id": 2,
+      "title": "درخواست ویژگی جدید",
+      "description": "لطفاً گزینه جستجوی پیشرفته اضافه کنید.",
+      "priority": "medium",
+      "status": "in_progress",
+      "userId": 1,
+      "created_at": "2026-02-19T15:30:00Z",
+      "updated_at": "2026-02-20T09:45:00Z"
+    },
+    {
+      "id": 3,
+      "title": "خطا در صفحه پرداخت",
+      "description": "هنگام پرداخت خطای 500 رخ می‌دهد.",
+      "priority": "high",
+      "status": "closed",
+      "userId": 2,
+      "created_at": "2026-02-18T14:00:00Z",
+      "updated_at": "2026-02-19T16:20:00Z"
+    },
+    {
+      "id": 4,
+      "title": "سؤال درباره استفاده از API",
+      "description": "چگونه از endpoint جدید استفاده کنم؟",
+      "priority": "low",
+      "status": "open",
+      "userId": 1,
+      "created_at": "2026-02-21T08:15:00Z",
+      "updated_at": "2026-02-21T08:15:00Z"
+    },
+    {
+      "id": 5,
+      "title": "گزارش باگ در موبایل",
+      "description": "اپلیکیشن در iOS کرش می‌کند.",
+      "priority": "high",
+      "status": "in_progress",
+      "userId": 2,
+      "created_at": "2026-02-20T11:45:00Z",
+      "updated_at": "2026-02-21T10:30:00Z"
+    },
+    {
+      "title": "sdfsdf",
+      "description": "sdfsdf",
+      "priority": "medium",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T13:23:43.013Z",
+      "updated_at": "2026-02-21T13:23:43.013Z",
+      "id": 6
+    },
+    {
+      "title": "وصل نشدن اینترنت ",
+      "description": "مسنبتمنسبتسمنیبت",
+      "priority": "high",
+      "userId": 2,
+      "status": "open",
+      "created_at": "2026-02-21T13:33:33.182Z",
+      "updated_at": "2026-02-21T13:33:33.182Z",
+      "id": 7
+    },
+    {
+      "title": "asdsad",
+      "description": "asdasd",
+      "priority": "low",
+      "userId": 1,
+      "status": "in_progress",
+      "created_at": "2026-02-21T14:28:04.715Z",
+      "updated_at": "2026-02-21T14:54:27.410Z",
+      "id": 8
+    },
+    {
+      "title": "صرافی",
+      "description": "صرافی مشکل داره ",
+      "priority": "medium",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T15:00:31.614Z",
+      "updated_at": "2026-02-21T15:00:31.614Z",
+      "id": 9
+    },
+    {
+      "title": "مشکل ",
+      "description": "مشکل",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T15:13:03.942Z",
+      "updated_at": "2026-02-21T15:13:03.942Z",
+      "id": 10
+    },
+    {
+      "title": "شسی",
+      "description": "شسی",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T15:13:25.705Z",
+      "updated_at": "2026-02-21T15:13:25.705Z",
+      "id": 11
+    },
+    {
+      "title": "شسی",
+      "description": "شیشسی",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T15:13:44.270Z",
+      "updated_at": "2026-02-21T15:13:44.270Z",
+      "id": 12
+    },
+    {
+      "title": "adsd",
+      "description": "asdsad",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T15:20:26.792Z",
+      "updated_at": "2026-02-21T15:20:26.792Z",
+      "id": 13
+    },
+    {
+      "title": "مشکل اینترنت",
+      "description": "نت وصل نمیشه ",
+      "priority": "high",
+      "userId": 3,
+      "status": "open",
+      "created_at": "2026-02-21T18:24:58.582Z",
+      "updated_at": "2026-02-21T19:20:23.548Z",
+      "id": 14
+    },
+    {
+      "title": "asdsad",
+      "description": "asdasd",
+      "priority": "medium",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:37:20.176Z",
+      "updated_at": "2026-02-21T19:37:20.176Z",
+      "id": 15
+    },
+    {
+      "title": "asdsa",
+      "description": "asdasd",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:38:01.906Z",
+      "updated_at": "2026-02-21T19:38:01.906Z",
+      "id": 16
+    },
+    {
+      "title": "asd",
+      "description": "asdsad",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:38:43.841Z",
+      "updated_at": "2026-02-21T19:38:43.841Z",
+      "id": 17
+    },
+    {
+      "title": "asd",
+      "description": "adasd",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:39:42.967Z",
+      "updated_at": "2026-02-21T19:39:42.967Z",
+      "id": 18
+    },
+    {
+      "title": "شسی",
+      "description": "شسی",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:42:21.136Z",
+      "updated_at": "2026-02-21T19:42:21.136Z",
+      "id": 19
+    },
+    {
+      "title": "asd",
+      "description": "asd",
+      "priority": "medium",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:42:56.636Z",
+      "updated_at": "2026-02-21T19:42:56.636Z",
+      "id": 20
+    },
+    {
+      "title": "asd",
+      "description": "asd",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:44:13.908Z",
+      "updated_at": "2026-02-21T19:44:13.908Z",
+      "id": 21
+    },
+    {
+      "title": "asd",
+      "description": "asd",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:44:27.118Z",
+      "updated_at": "2026-02-21T19:44:27.118Z",
+      "id": 22
+    },
+    {
+      "title": "شسی",
+      "description": "شسی",
+      "priority": "low",
+      "userId": 1,
+      "status": "open",
+      "created_at": "2026-02-21T19:46:56.178Z",
+      "updated_at": "2026-02-21T19:46:56.178Z",
+      "id": 23
+    }
+  ]
+}
