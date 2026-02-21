@@ -40,3 +40,15 @@
    ```bash
    git clone <repository-url>
    cd <project-folder>
+
+2. نصب وابستگی ها :
+  ```bash
+  npm install
+
+3. ران کردن json-server (شبیه‌سازی بک‌اند):
+  ```bash
+  npm run server
+
+4. ران کردن فرانت‌اند:
+   ```bash
+   npm run dev
