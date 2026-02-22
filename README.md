@@ -80,10 +80,10 @@ my-ticketing-app/
 
 3. **بیلد کردن ایمیج‌ها
    ```bash
-      docker compose up -d
+   docker compose up -d
 4. **توقف پروژه
    ```bash
-      docker compose up -d
+   docker compose up -d
 
 **اجرای محلی (بدون Docker)
 
