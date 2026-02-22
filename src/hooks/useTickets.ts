@@ -162,3 +162,19 @@ export const useCreateFake = () => {
         },
     });
 };
+
+// fake api single ticket
+
+export const fetchTicketDetails = async (id: string): Promise<Ticket> => {
+    const res = await fetch(`http://localhost:3001/tickets/${id}`);
+    if (!res.ok) throw new Error('تیکت یافت نشد');
+    return res.json();
+};
+export const useFetchTicketDetail = (id: string | undefined) => {
+    return useQuery<Ticket, Error>({
+        queryKey: ['ticket', id],
+        queryFn: () => fetchTicketDetails(id!),
+        enabled: !!id,
+    });
+};
+

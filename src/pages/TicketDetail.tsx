@@ -1,49 +1,22 @@
-import { useParams } from 'react-router-dom';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
+import {  useMutation, useQueryClient } from '@tanstack/react-query';
 import { useUserContext } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import type { Ticket } from '../types';
-
-interface TicketResponse {
-    id: number;
-    ticketId: number;
-    userId: number;
-    message: string;
-    created_at: string;
-}
-
+import { BsArrowLeftCircle } from 'react-icons/bs';
+import { useFetchTicketDetail } from '../hooks/useTickets';
 interface ResponseFormData {
     message: string;
 }
-const fetchTicketDetails = async (id: string): Promise<Ticket> => {
-    const res = await fetch(`http://localhost:3001/tickets/${id}`);
-    if (!res.ok) throw new Error('تیکت یافت نشد');
-    return res.json();
-};
-
-const fetchResponses = async (id: string): Promise<TicketResponse[]> => {
-    const res = await fetch(`http://localhost:3001/ticketResponses?ticketId=${id}`);
-    if (!res.ok) throw new Error('خطا در دریافت پاسخ‌ها');
-    return res.json();
-};
 const TicketDetails = () => {
     const { id } = useParams();
     const { user } = useUserContext();
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm<ResponseFormData>();
 
-    const { data: ticket, isLoading: ticketLoading } = useQuery<Ticket>({
-        queryKey: ['ticket', id],
-        queryFn: () => fetchTicketDetails(id || ''),
-        enabled: !!id,
-    });
-
-    const { data: responses = [], isLoading: responsesLoading } = useQuery<TicketResponse[]>({
-        queryKey: ['ticketResponses', id],
-        queryFn: () => fetchResponses(id || ''),
-        enabled: !!id,
-    });
+  
+    const { data: ticket, isLoading: ticketLoading} = useFetchTicketDetail(id)
 
     const addResponseMutation = useMutation({
         mutationFn: async (message: string) => {
@@ -90,7 +63,7 @@ const TicketDetails = () => {
         addResponseMutation.mutate(data.message);
     };
 
-    if (ticketLoading || responsesLoading) {
+    if (ticketLoading ) {
         return <div className="text-center w-10 h-10 border-2 border-blue-700 border-l-0 animate-spin rounded-full"></div>;
     }
 
@@ -98,17 +71,49 @@ const TicketDetails = () => {
         return <div className="text-center py-20 text-red-600">تیکت یافت نشد</div>;
     }
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className='flex gap-2 items-center text-3xl font-bold mb-6'>
-                <span>موضوع: </span>
-                <h2 className="">{ticket.title}</h2>
-
+        <div className="container mx-auto max-w-3xl px-4 py-8 bg-white rounded-xl">
+            <div className='flex justify-between bg-blue-500 p-4 rounded-xl text-white gap-2 items-center text-3xl font-bold mb-6'>
+                <div className='flex items-center gap-2'>
+                    <span>موضوع: </span>
+                    <h2 className="">{ticket.title}</h2>
+                </div>
+                <button title='back' onClick={() => navigate('/tickets')}><BsArrowLeftCircle /></button>
             </div>
-            <div className='flex flex-col items-start gap-2'>
-                <p className="text-gray-600 "><span>توضیحات :</span> {ticket.description}</p>
-                <p className="text-sm text-gray-500">اولویت: {ticket.priority}</p>
-                <p className="text-sm text-gray-500">وضعیت: {ticket.status}</p>
-                <p className="text-sm text-gray-500">تاریخ ایجاد: {new Date(ticket.created_at).toLocaleString()}</p>
+            <div className='flex flex-col items-start gap-2 border border-gray-500 rounded-xl p-4'>
+                <span className='font-bold'>جزئیات تیکت </span>
+                <p className="text-gray-600 w-full flex justify-between"><span>توضیحات :</span> {ticket.description}</p>
+
+                <p className="text-sm w-full flex justify-between">
+                    اولویت:
+                    <span className={` 
+              rounded font-medium text-white text-xs px-4 py-1 w-16
+            ${ticket.priority === 'high' ? 'bg-red-600' :
+                            ticket.priority === 'medium' ? 'bg-orange-500' :
+                                ticket.priority === 'low' ? 'bg-green-600' : 'bg-gray-500'}
+        `}>
+                        {ticket.priority === 'high' ? 'بالا' :
+                            ticket.priority === 'medium' ? 'متوسط' :
+                                ticket.priority === 'low' ? 'پایین' : ticket.priority}
+                    </span>
+                </p>
+
+                <p className="text-sm w-full flex justify-between gap-2">
+                    وضعیت:
+                    <span className={` 
+            w-16 py-1 rounded text-center font-medium text-white text-sm
+            ${ticket.status === 'open' ? 'bg-green-600' :
+                            ticket.status === 'in_progress' ? 'bg-yellow-500' :
+                                ticket.status === 'closed' ? 'bg-red-600' : 'bg-gray-500'}
+        `}>
+                        {ticket.status === 'open' ? 'باز' :
+                            ticket.status === 'in_progress' ? 'در حال بررسی' :
+                                ticket.status === 'closed' ? 'بسته شده' : ticket.status}
+                    </span>
+                </p>
+
+                <p className="text-sm text-gray-500 w-full flex justify-between">
+                    <span>تاریخ ایجاد:</span> {new Date(ticket.created_at).toLocaleString('fa-IR')}
+                </p>
             </div>
 
 
@@ -124,7 +129,7 @@ const TicketDetails = () => {
             )}
 
             <h3 className="text-2xl font-bold mt-8 mb-4">پاسخ‌ها</h3>
-            {responses.length === 0 ? (
+            {/* {responses.length === 0 ? (
                 <p>هیچ پاسخی وجود ندارد</p>
             ) : (
                 <ul>
@@ -136,14 +141,14 @@ const TicketDetails = () => {
                         </li>
                     ))}
                 </ul>
-            )}
+            )} */}
 
             <h4 className="text-xl font-bold mt-6 mb-2">اضافه پاسخ</h4>
             <form onSubmit={handleSubmit(onAddResponse)}>
                 <textarea
                     {...register('message', { required: 'پیام الزامی است' })}
                     placeholder="پیام شما..."
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 bg-gray-200 rounded resize-none focus:outline-0 h-32"
                 />
                 {errors.message && <p className="text-red-600">{errors.message.message}</p>}
                 <button type="submit" disabled={addResponseMutation.isPending} className="mt-2 bg-blue-500 text-white p-2 rounded">

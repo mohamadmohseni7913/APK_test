@@ -43,16 +43,6 @@ const getStatusText = (status: string) => {
     };
     return map[status] || status;
 };
-
-const getPriorityText = (priority: string) => {
-    const map: Record<string, string> = {
-        low: 'کم',
-        medium: 'متوسط',
-        high: 'بالا',
-    };
-    return map[priority] || priority;
-};
-
 interface TicketTableProps {
     list: Ticket[];
     user: User;
@@ -75,7 +65,7 @@ const TicketTable: FC<TicketTableProps> = ({ list, user }) => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                     {list.map((ticket) => (
-                        <tr key={ticket.id} className={`${ticket.status == "closed" ? "cursor-not-allowed" : "cursor-pointer"} hover:bg-gray-100  transition-colors duration-150`}>
+                        <tr key={ticket.id} className={`cursor-poi hover:bg-gray-100  transition-colors duration-150`}>
                             <td className="px-6 py-4 text-sm font-medium text-gray-900 max-w-xs truncate">
                                 {ticket.title}
                             </td>
@@ -83,7 +73,7 @@ const TicketTable: FC<TicketTableProps> = ({ list, user }) => {
                                 {ticket.description}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                <Badge variant="priority">{getPriorityText(ticket.priority)}</Badge>
+                                <Badge variant="priority">{ticket.priority}</Badge>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                                 <Badge variant="status">{getStatusText(ticket.status)}</Badge>
@@ -91,9 +81,6 @@ const TicketTable: FC<TicketTableProps> = ({ list, user }) => {
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                                 <button className="bg-blue-500 rounded-xl p-2 text-white"
                                     onClick={(e) => {
-                                        if (ticket.status == "closed") {
-                                            return;
-                                        }
                                         navigate(`/tickets/${ticket.id}`); e.stopPropagation()
                                     }}
                                 >مشاهده</button>
