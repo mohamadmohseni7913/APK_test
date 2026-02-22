@@ -33,7 +33,8 @@ const LoginForm = () => {
       const userToSave = {
         id: matchedUser.id,
         username: matchedUser.username,
-        is_admin: matchedUser.is_admin ?? false
+        is_admin: matchedUser.is_admin ?? false,
+        email: matchedUser.email ?? '',
       };
       localStorage.setItem('mockUser', JSON.stringify(userToSave));
       setUser(userToSave);

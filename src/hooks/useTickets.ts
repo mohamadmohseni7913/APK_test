@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 // fetch ticket list
 export const useTickets = () => {
-    return useQuery<ResponseType<Ticket[]>, ErrorResponseType>({
+    return useQuery<ResponseType<Ticket[]>, Error>({
         queryKey: ['tickets'],
         queryFn: () => api.get(endpoints.USER_TICKET).then(res => res.data),
         refetchInterval: 5 * 60 * 1000,
@@ -27,9 +27,9 @@ export const useCreateTicket = () => {
     return useMutation<
         ResponseType<{ message: string }>,
         ErrorResponseType,
-        number, Ticket
+         Ticket
     >({
-        mutationFn: (userId, data) =>
+        mutationFn: (data) =>
             api.post(endpoints.USER_TICKET, data).then(res => res.data),
         onSuccess: () => {
             queryClient.invalidateQueries({
@@ -96,9 +96,6 @@ export const fetchTickets = async (user: User | null, filters: any): Promise<Tic
     }
     return res.json();
 };
-
-
-
 // update status by admin 
 export const handleStatusChange = async (
     ticketId: number,
@@ -126,9 +123,7 @@ export const handleStatusChange = async (
         toast.error(err.message || 'خطا در بروزرسانی وضعیت');
     }
 };
-
 // create fake ticket
-
 export const useCreateFake = () => {
     const queryClient = useQueryClient();
     return useMutation<
@@ -162,9 +157,7 @@ export const useCreateFake = () => {
         },
     });
 };
-
 // fake api single ticket
-
 export const fetchTicketDetails = async (id: string): Promise<Ticket> => {
     const res = await fetch(`http://localhost:3001/tickets/${id}`);
     if (!res.ok) throw new Error('تیکت یافت نشد');

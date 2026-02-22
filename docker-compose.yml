@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"              
+    depends_on:
+      - mock-backend
+    environment:
+      - VITE_API_URL=http://mock-backend:3000 
+    restart: unless-stopped
+
+  mock-backend:              
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./db.json:/app/db.json
+      
+    command: >
+      sh -c "npm install -g json-server &&
+             json-server --watch db.json --port 3000 --host 0.0.0.0"
+    ports:
+      - "3001:3000"            
+    restart: unless-stopped

@@ -6,6 +6,7 @@ import CreateTicket from './pages/CreateTicket';
 import Layout from './components/layout/Layout';
 import { getToken } from './utils/cookies';
 import TicketDetails from './pages/TicketDetail';
+import NotFoundPage from './pages/notFound';
 const useAuth = () => {
   const token = getToken();
   return !!token;
@@ -34,9 +35,10 @@ function App() {
             <Route path="/tickets" element={<TicketList />} />
             <Route path="/tickets/create" element={<CreateTicket />} />
             <Route path="/tickets/:id" element={<TicketDetails />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Route>
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
       </Routes>
     </Router>
   );
